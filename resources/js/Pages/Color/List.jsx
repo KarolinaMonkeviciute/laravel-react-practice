@@ -1,12 +1,13 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { Data } from "./Data";
 
 export default function List() {
-    const { colors } = useContext(Data);
+    const { colors, setDeleteColor } = useContext(Data);
+
     return (
         <div className="colors">
             {colors.map((color) => {
-                return (
+                return color.deleted ? null : (
                     <div
                         key={color.id}
                         className="color"
@@ -14,9 +15,18 @@ export default function List() {
                             backgroundColor: color.hex + "66",
                             width: color.size + "px",
                             height: color.size + "px",
-                            border: "4px solid" + color.hex,
+                            border: "4px solid " + color.hex,
                         }}
                     >
+                        <div className="buttons">
+                            <button className="edit">Edit</button>
+                            <button
+                                className="delete"
+                                onClick={(_) => setDeleteColor(color)}
+                            >
+                                Delete
+                            </button>
+                        </div>
                         <p>{color.hex}</p>
                     </div>
                 );

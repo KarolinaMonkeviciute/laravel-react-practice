@@ -32,6 +32,7 @@ Route::get('/basic-i', [BasicController::class, 'indexInertia']);
 
 Route::prefix('colors')->name('color.')->group(function() {
     Route::get('/', [ColorController::class, 'index'])->name('index');
+    Route::delete('/{color}', [ColorController::class, 'destroy'])->name('destroy');
 });
 
 Route::get('/dashboard', function () {
