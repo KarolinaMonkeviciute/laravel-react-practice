@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BasicController;
+use App\Http\Controllers\ColorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,10 @@ Route::get('/', function () {
 
 Route::get('/basic-b', [BasicController::class, 'indexBlade']);
 Route::get('/basic-i', [BasicController::class, 'indexInertia']);
+
+Route::prefix('colors')->name('color.')->group(function() {
+    Route::get('/', [ColorController::class, 'index'])->name('index');
+});
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
