@@ -20,35 +20,15 @@ class ColorController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(StoreColorRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Color $color)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Color $color)
-    {
-        //
+        $id = Color::create($request->validated())->id;
+        return response()->json([
+            'message' => 'Success',
+            'id' => $id,
+        ]);
     }
 
     /**
@@ -56,7 +36,10 @@ class ColorController extends Controller
      */
     public function update(UpdateColorRequest $request, Color $color)
     {
-        //
+        $color->update($request->validated());
+        return response()->json([
+            'message' => 'Success',
+        ]);
     }
 
     /**
